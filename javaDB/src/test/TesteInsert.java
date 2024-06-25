@@ -26,10 +26,10 @@ public class TesteInsert {
 		String end = endereco.nextLine();
 		contato.setEndereco(end);
 		
-		System.out.println("Escreva sua idade: ");
-		Scanner nascimento = new Scanner(System.in);
-		int data = nascimento.nextInt();
-		contato.setIdade(data);
+		System.out.println("Digite seu CPF: ");
+		Scanner cpf = new Scanner(System.in);
+		String CPF = cpf.nextLine();
+		contato.setCpf(CPF);
 
 		try {
 			
@@ -45,7 +45,7 @@ public class TesteInsert {
 		nome.close();
 		email.close();
 		endereco.close();
-		nascimento.close();
+		cpf.close();
 
 	}
 

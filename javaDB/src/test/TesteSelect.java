@@ -16,7 +16,7 @@ public class TesteSelect {
 			System.out.println("Nome do contato: "+contato1.getNome());
 			System.out.println("Email do contato: "+contato1.getEmail());
 			System.out.println("Endereço do contato: "+contato1.getEndereco());
-			System.out.println("Idade: "+contato1.getIdade());
+			System.out.println("CPF: "+contato1.getCpf());
 			System.out.println("+++++++++++++++++++++++++++++++++++++++++");
 		}
 	}

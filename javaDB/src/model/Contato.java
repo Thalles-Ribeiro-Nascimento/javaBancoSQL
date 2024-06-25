@@ -6,7 +6,7 @@ public class Contato {
 	private String nome;
 	private String email;
 	private String endereco;
-	private int idade;
+	private String cpf;
 	
 	public int getId() {
 		return id;
@@ -36,11 +36,11 @@ public class Contato {
 		this.endereco = endereco;
 	}
 	
-	public int getIdade() {
-		return idade;
+	public String getCpf() {
+		return cpf;
 	}
-	public void setIdade(int idade) {
-		this.idade = idade;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 	
 	
