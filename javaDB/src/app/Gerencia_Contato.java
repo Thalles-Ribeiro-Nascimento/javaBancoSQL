@@ -11,162 +11,152 @@ public class Gerencia_Contato {
 
 	public static void main(String[] args) throws SQLException {
 		ContatoDAO dao = new ContatoDAO();
-
-//		Escolhendo as funcionalidades
-		System.out.println("Escolha entre as funciolidades abaixo:");
-		System.out.println("1: Listar todos os contatos");
-		System.out.println("2: Listar os contatos que começam com determinada letra");
-		System.out.println("3: Listar contato por identificador");
-		System.out.println("4: Adicionar um novo contato");
-		System.out.println("5: Deletar um contato");
-		System.out.println("6: Atualizar um contato");
-		System.out.println("7: Fechar o programa");
-
-		Scanner funcao = new Scanner(System.in);
-		int funcao_escolhida = funcao.nextInt();
-
-//		Lista todos os contatos, caso a funcionalidade seja a 1
-		if(funcao_escolhida == 1) {
-			List<Contato> contato = dao.select();
-
-			for (Contato contato1 : contato) {
-				System.out.println("Nome do contato: "+contato1.getNome());
-				System.out.println("Email do contato: "+contato1.getEmail());
-				System.out.println("Endereço do contato: "+contato1.getEndereco());
-				System.out.println("CPF: "+contato1.getCpf());
-				System.out.println(" ");
-			}
-		}
-
-//		Lista os contatos começados com alguma determinada letra
-		if(funcao_escolhida == 2) {
-			System.out.println("Digite uma letra: ");
-			Scanner name = new Scanner(System.in);
-			String letra = name.nextLine();
-
-			List<Contato> contato = dao.getNome(letra);
-
-			for (Contato contato1 : contato) {
-				System.out.println("Nome do contato: "+contato1.getNome());
-				System.out.println("Email do contato: "+contato1.getEmail());
-				System.out.println("Endereço do contato: "+contato1.getEndereco());
-				System.out.println("CPF: "+contato1.getCpf());
-				System.out.println(" ");
-			}
-			name.close();
-		}
-
-//		Lista os contatos pelo id
-		if(funcao_escolhida == 3) {
-			System.out.println("Digite um id: ");
-			Scanner id = new Scanner(System.in);
-			int Id = id.nextInt();
-
-			List<Contato> contato = dao.getId(Id);
-
-			for (Contato contato1 : contato) {
-				System.out.println("Nome do contato: "+contato1.getNome());
-				System.out.println("Email do contato: "+contato1.getEmail());
-				System.out.println("Endereço do contato: "+contato1.getEndereco());
-				System.out.println("CPF: "+contato1.getCpf());
-				System.out.println(" ");
+		Scanner sc = new Scanner(System.in);
+		int opcao;
+		do {
+			//		Escolhendo as funcionalidades
+			System.out.println("Escolha entre as funciolidades abaixo:");
+			System.out.println("1: Listar todos os contatos");
+			System.out.println("2: Listar os contatos que começam com determinada letra");
+			System.out.println("3: Listar contato por identificador");
+			System.out.println("4: Adicionar um novo contato");
+			System.out.println("5: Deletar um contato");
+			System.out.println("6: Atualizar um contato");
+			System.out.println("7: Fechar o programa");
+			opcao = Integer.parseInt(sc.nextLine());
+			if(opcao < 1 || opcao >7) {
+				System.out.println("Opção incorreta");
 			}
 
-			id.close();
-		}
+			else {
+				if(opcao != 7) {
+					switch(opcao) {
+					case 1:	
+						//		Lista todos os contatos, caso a funcionalidade seja a 1
+						List<Contato> contato = dao.select();
 
-//		Insere um novo contato
-		if(funcao_escolhida == 4) {
-			Contato contato = new Contato();
+						for (Contato contato1 : contato) {
+							System.out.println("Nome do contato: "+contato1.getNome());
+							System.out.println("Email do contato: "+contato1.getEmail());
+							System.out.println("Endereço do contato: "+contato1.getEndereco());
+							System.out.println("CPF: "+contato1.getCpf());
+							System.out.println(" ");
+						}
+						break;
+						//		Lista os contatos começados com alguma determinada letra
+					case 2:
+						System.out.println("Digite uma letra: ");
+						String letra = sc.nextLine();
 
-			System.out.println("Escreva seu nome: ");
-			Scanner nome = new Scanner(System.in);
-			String name = nome.nextLine();
-			contato.setNome(name);
+						List<Contato> contato2 = dao.getNome(letra);
 
-			System.out.println("Escreva seu email: ");
-			Scanner email = new Scanner(System.in);
-			String e_mail = email.nextLine();
-			contato.setEmail(e_mail);
+						for (Contato contato1 : contato2) {
+							System.out.println("Nome do contato: "+contato1.getNome());
+							System.out.println("Email do contato: "+contato1.getEmail());
+							System.out.println("Endereço do contato: "+contato1.getEndereco());
+							System.out.println("CPF: "+contato1.getCpf());
+							System.out.println(" ");
+						}
 
-			System.out.println("Escreva seu endereco: ");
-			Scanner endereco = new Scanner(System.in);
-			String end = endereco.nextLine();
-			contato.setEndereco(end);
+						break;
 
-			System.out.println("Digite seu CPF: ");
-			Scanner cpf = new Scanner(System.in);
-			String CPF = cpf.nextLine();
-			contato.setCpf(CPF);
+						//		Lista os contatos pelo id
+					case 3:
+						System.out.println("Digite um id: ");
+						int Id = sc.nextInt();
 
-			dao.adiciona(contato);
-			System.out.println("Gravação feita no Banco de Dados");
+						List<Contato> contato3 = dao.getId(Id);
 
-			nome.close();
-			email.close();
-			endereco.close();
-			cpf.close();
-		}
+						for (Contato contato1 : contato3) {
+							System.out.println("Nome do contato: "+contato1.getNome());
+							System.out.println("Email do contato: "+contato1.getEmail());
+							System.out.println("Endereço do contato: "+contato1.getEndereco());
+							System.out.println("CPF: "+contato1.getCpf());
+							System.out.println(" ");
+						}
 
-//		Apaga um contato
-		if(funcao_escolhida == 5) {
-			System.out.println("Digite o Id que queira deletar: ");
-			Scanner id = new Scanner(System.in);
 
-			dao.delete(id.nextInt());
-			System.out.println("Contato deletado!");
+						break;
 
-			id.close();
-		}
+						//		Insere um novo contato
+					case 4:
+						Contato contato4 = new Contato();
 
-//		Atualiza um contato e lista ele para que seja visto melhor o campo que será alterado
-		if(funcao_escolhida == 6) {
+						System.out.println("Escreva seu nome: ");
 
-			System.out.println("Digite o id: ");
-			Scanner id = new Scanner(System.in);
-			int Id = id.nextInt();
+						String nm = sc.nextLine();
+						contato4.setNome(nm);
 
-			List<Contato> contato = dao.getIdentificador(Id);
+						System.out.println("Escreva seu email: ");
 
-			for (Contato contato1 : contato) {
-				System.out.println("Nome do contato: "+contato1.getNome());
-				System.out.println("Email do contato: "+contato1.getEmail());
-				System.out.println("Endereço do contato: "+contato1.getEndereco());
-				System.out.println("CPF: "+contato1.getCpf());
-				System.out.println(" ");
+						String e_mail = sc.nextLine();
+						contato4.setEmail(e_mail);
+
+						System.out.println("Escreva seu endereco: ");
+
+						String end = sc.nextLine();
+						contato4.setEndereco(end);
+
+						System.out.println("Digite seu CPF: ");
+
+						String CPF = sc.nextLine();
+						contato4.setCpf(CPF);
+
+						dao.adiciona(contato4);
+						System.out.println("Gravação feita no Banco de Dados");
+
+
+						break;
+
+						//		Apaga um contato
+					case 5:
+						System.out.println("Digite o Id que queira deletar: ");
+						dao.delete(sc.nextInt());
+						System.out.println("Contato deletado!");
+
+
+						break;
+
+						//		Atualiza um contato e lista ele para que seja visto melhor o campo que será alterado
+					case 6:
+						System.out.println("Digite o id: ");
+
+						int Id1 = sc.nextInt();
+
+						List<Contato> contato6 = dao.getIdentificador(Id1);
+
+						for (Contato contato1 : contato6) {
+							System.out.println("Nome do contato: "+contato1.getNome());
+							System.out.println("Email do contato: "+contato1.getEmail());
+							System.out.println("Endereço do contato: "+contato1.getEndereco());
+							System.out.println("CPF: "+contato1.getCpf());
+							System.out.println(" ");
+						}
+
+						System.out.println("Digite uma coluna que queira editar: ");
+						System.out.println("1: Nome");
+						System.out.println("2: Email");
+						System.out.println("3: Endereço");
+						System.out.println("4: CPF");		
+
+						int coluna = sc.nextInt();
+
+						System.out.println("Digite o novo valor para a coluna: ");
+
+						String dado = sc.nextLine();
+
+						dao.update(coluna, dado, Id1);
+						System.out.println("Atualização feita!");
+
+
+						break;
+					}
+				}
 			}
 
-			System.out.println("Digite uma coluna que queira editar: ");
-			System.out.println("1: Nome");
-			System.out.println("2: Email");
-			System.out.println("3: Endereço");
-			System.out.println("4: CPF");		
-			Scanner chave = new Scanner(System.in);
-			int coluna = chave.nextInt();
-
-			System.out.println("Digite o novo valor para a coluna: ");
-			Scanner valor = new Scanner(System.in);
-			String dado = valor.nextLine();
-
-			dao.update(coluna, dado, Id);
-			System.out.println("Atualização feita!");
-
-			id.close();
-			chave.close();
-			valor.close();
-
-		}
-		
-		if(funcao_escolhida == 7) {
-			System.out.println("Certo, encerraremos o programa!");
-			System.out.println("...");
-			System.out.println(" ");
-		}
-
-
-		funcao.close();		
-
+		}while(opcao != 7);		
 		System.out.println("Programa encerrado!!");
+		sc.close();
 
 
 	}

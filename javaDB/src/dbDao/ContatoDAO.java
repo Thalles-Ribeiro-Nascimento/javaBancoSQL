@@ -11,29 +11,32 @@ import connectionFactory.ConectionDB;
 import model.Contato;
 
 public class ContatoDAO {
-	private Connection con;
+	private Connection con = null;
+	PreparedStatement smt = null;
+	ResultSet rs = null;
 	
 	public ContatoDAO() throws SQLException {
 		this.con = ConectionDB.getConnection();
 	}
 	
+	
 //	Método para listar os contatos
 	public List<Contato> select() throws SQLException {
 		String select = "select * from contatos";
-		PreparedStatement smt = con.prepareStatement(select);
-		ResultSet rset = smt.executeQuery();
+		smt = con.prepareStatement(select);
+		rs = smt.executeQuery();
 		List<Contato> contato = new ArrayList<Contato>();
 		
-		while (rset.next()) {
+		while (rs.next()) {
 			Contato ct = new Contato();
-			ct.setNome(rset.getString("nome"));
-			ct.setEmail(rset.getString("email"));
-			ct.setEndereco(rset.getString("endereco"));
-			ct.setCpf(rset.getString("cpf"));
+			ct.setNome(rs.getString("nome"));
+			ct.setEmail(rs.getString("email"));
+			ct.setEndereco(rs.getString("endereco"));
+			ct.setCpf(rs.getString("cpf"));
 			contato.add(ct);
 		}
 		
-		rset.close();
+		rs.close();
 		smt.close();
 		con.close();
 		
@@ -43,22 +46,22 @@ public class ContatoDAO {
 //	Método para listar os contatos pela letra
 	public List<Contato> getNome(String letra) throws SQLException {
 		String select = "select * from contatos where nome like '"+letra+"%'";
-		PreparedStatement smt = con.prepareStatement(select);
-		
+		smt = con.prepareStatement(select);
 		smt.execute();
-		ResultSet rset = smt.executeQuery();
+		
+		rs = smt.executeQuery();
 		List<Contato> contato = new ArrayList<Contato>();
 		
-		while (rset.next()) {
+		while (rs.next()) {
 			Contato ct = new Contato();
-			ct.setNome(rset.getString("nome"));
-			ct.setEmail(rset.getString("email"));
-			ct.setEndereco(rset.getString("endereco"));
-			ct.setCpf(rset.getString("cpf"));
+			ct.setNome(rs.getString("nome"));
+			ct.setEmail(rs.getString("email"));
+			ct.setEndereco(rs.getString("endereco"));
+			ct.setCpf(rs.getString("cpf"));
 			contato.add(ct);
 		}
 		
-		rset.close();
+		rs.close();
 		smt.close();
 		con.close();
 		
@@ -72,19 +75,19 @@ public class ContatoDAO {
 		PreparedStatement smt = con.prepareStatement(select);
 		smt.setInt(1, id);
 		smt.execute();
-		ResultSet rset = smt.executeQuery();
+		rs = smt.executeQuery();
 		List<Contato> contato = new ArrayList<Contato>();
 		
-		while (rset.next()) {
+		while (rs.next()) {
 			Contato ct = new Contato();
-			ct.setNome(rset.getString("nome"));
-			ct.setEmail(rset.getString("email"));
-			ct.setEndereco(rset.getString("endereco"));
-			ct.setCpf(rset.getString("cpf"));
+			ct.setNome(rs.getString("nome"));
+			ct.setEmail(rs.getString("email"));
+			ct.setEndereco(rs.getString("endereco"));
+			ct.setCpf(rs.getString("cpf"));
 			contato.add(ct);
 		}
 		
-		rset.close();
+		rs.close();
 		smt.close();
 		con.close();
 		
@@ -97,19 +100,19 @@ public class ContatoDAO {
 		PreparedStatement smt = con.prepareStatement(select);
 		smt.setInt(1, id);
 		smt.execute();
-		ResultSet rset = smt.executeQuery();
+		rs = smt.executeQuery();
 		List<Contato> contato = new ArrayList<Contato>();
 		
-		while (rset.next()) {
+		while (rs.next()) {
 			Contato ct = new Contato();
-			ct.setNome(rset.getString("nome"));
-			ct.setEmail(rset.getString("email"));
-			ct.setEndereco(rset.getString("endereco"));
-			ct.setCpf(rset.getString("cpf"));
+			ct.setNome(rs.getString("nome"));
+			ct.setEmail(rs.getString("email"));
+			ct.setEndereco(rs.getString("endereco"));
+			ct.setCpf(rs.getString("cpf"));
 			contato.add(ct);
 		}
 		
-		rset.close();
+		rs.close();
 		smt.close();
 		
 		return contato;
@@ -118,14 +121,13 @@ public class ContatoDAO {
 //	Método que adiciona um novo contato
 	public void adiciona(Contato contato) throws SQLException {
 		String sql = "insert into contatos(nome, email, endereco, cpf) values (?,?,?,?)";
-		PreparedStatement smt = con.prepareStatement(sql);
+		smt = con.prepareStatement(sql);
 		smt.setString(1, contato.getNome());
 		smt.setString(2, contato.getEmail());
 		smt.setString(3, contato.getEndereco());
 		smt.setString(4, contato.getCpf());
 		
 		smt.execute();
-		
 		smt.close();
 		con.close();
 	}

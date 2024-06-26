@@ -6,7 +6,7 @@ public class Contato {
 	private String nome;
 	private String email;
 	private String endereco;
-	private String cpf;
+	protected String cpf;
 	
 	public int getId() {
 		return id;
