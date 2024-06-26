@@ -12,7 +12,8 @@ public class Gerencia_Contato {
 	public static void main(String[] args) throws SQLException {
 		ContatoDAO dao = new ContatoDAO();
 
-		System.out.println("Escolha entre os números abaixo:");
+//		Escolhendo as funcionalidades
+		System.out.println("Escolha entre as funciolidades abaixo:");
 		System.out.println("1: Listar todos os contatos");
 		System.out.println("2: Listar os contatos que começam com determinada letra");
 		System.out.println("3: Listar contato por identificador");
@@ -24,6 +25,7 @@ public class Gerencia_Contato {
 		Scanner funcao = new Scanner(System.in);
 		int funcao_escolhida = funcao.nextInt();
 
+//		Lista todos os contatos, caso a funcionalidade seja a 1
 		if(funcao_escolhida == 1) {
 			List<Contato> contato = dao.select();
 
@@ -36,6 +38,7 @@ public class Gerencia_Contato {
 			}
 		}
 
+//		Lista os contatos começados com alguma determinada letra
 		if(funcao_escolhida == 2) {
 			System.out.println("Digite uma letra: ");
 			Scanner name = new Scanner(System.in);
@@ -53,6 +56,7 @@ public class Gerencia_Contato {
 			name.close();
 		}
 
+//		Lista os contatos pelo id
 		if(funcao_escolhida == 3) {
 			System.out.println("Digite um id: ");
 			Scanner id = new Scanner(System.in);
@@ -71,6 +75,7 @@ public class Gerencia_Contato {
 			id.close();
 		}
 
+//		Insere um novo contato
 		if(funcao_escolhida == 4) {
 			Contato contato = new Contato();
 
@@ -103,6 +108,7 @@ public class Gerencia_Contato {
 			cpf.close();
 		}
 
+//		Apaga um contato
 		if(funcao_escolhida == 5) {
 			System.out.println("Digite o Id que queira deletar: ");
 			Scanner id = new Scanner(System.in);
@@ -113,6 +119,7 @@ public class Gerencia_Contato {
 			id.close();
 		}
 
+//		Atualiza um contato
 		if(funcao_escolhida == 6) {
 
 			System.out.println("Digite o id: ");

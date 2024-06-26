@@ -17,6 +17,7 @@ public class ContatoDAO {
 		this.con = ConectionDB.getConnection();
 	}
 	
+//	Método para listar os contatos
 	public List<Contato> select() throws SQLException {
 		String select = "select * from contatos";
 		PreparedStatement smt = con.prepareStatement(select);
@@ -39,6 +40,7 @@ public class ContatoDAO {
 		return contato;
 	}
 	
+//	Método para listar os contatos pela letra
 	public List<Contato> getNome(String letra) throws SQLException {
 		String select = "select * from contatos where nome like '"+letra+"%'";
 		PreparedStatement smt = con.prepareStatement(select);
@@ -63,6 +65,8 @@ public class ContatoDAO {
 		return contato;
 	}
 	
+	
+//	Método para listar os contatos pelo id
 	public List<Contato> getId(int id) throws SQLException {
 		String select = "select * from contatos where id = ?";
 		PreparedStatement smt = con.prepareStatement(select);
@@ -87,6 +91,7 @@ public class ContatoDAO {
 		return contato;
 	}
 	
+//	Método que lista pelo id usado na função 6 do app gerencia_contato (obs: Não fechei a conexão para não dar erro ao atualizar)
 	public List<Contato> getIdentificador(int id) throws SQLException {
 		String select = "select * from contatos where id = ?";
 		PreparedStatement smt = con.prepareStatement(select);
@@ -110,6 +115,7 @@ public class ContatoDAO {
 		return contato;
 	}
 	
+//	Método que adiciona um novo contato
 	public void adiciona(Contato contato) throws SQLException {
 		String sql = "insert into contatos(nome, email, endereco, cpf) values (?,?,?,?)";
 		PreparedStatement smt = con.prepareStatement(sql);
@@ -124,6 +130,7 @@ public class ContatoDAO {
 		con.close();
 	}
 	
+//	Método que deleta um contato
 	public void delete(int id) throws SQLException {
 		String del = "delete from contatos where id="+id;
 		PreparedStatement smt = con.prepareStatement(del);
@@ -132,6 +139,8 @@ public class ContatoDAO {
 		con.close();
 	}
 	
+	
+//	Método que edita um campo de um contato
 	public void update(int coluna, String valor, int id) throws SQLException {
 
 			if(coluna == 1) {
