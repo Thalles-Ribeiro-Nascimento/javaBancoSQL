@@ -34,7 +34,7 @@ public class Gerencia_Contato {
 				System.out.println("Email do contato: "+contato1.getEmail());
 				System.out.println("Endereço do contato: "+contato1.getEndereco());
 				System.out.println("CPF: "+contato1.getCpf());
-				System.out.println("+++++++++++++++++++++++++++++++++++++++++");
+				System.out.println(" ");
 			}
 		}
 
@@ -51,7 +51,7 @@ public class Gerencia_Contato {
 				System.out.println("Email do contato: "+contato1.getEmail());
 				System.out.println("Endereço do contato: "+contato1.getEndereco());
 				System.out.println("CPF: "+contato1.getCpf());
-				System.out.println("+++++++++++++++++++++++++++++++++++++++++");
+				System.out.println(" ");
 			}
 			name.close();
 		}
@@ -69,7 +69,7 @@ public class Gerencia_Contato {
 				System.out.println("Email do contato: "+contato1.getEmail());
 				System.out.println("Endereço do contato: "+contato1.getEndereco());
 				System.out.println("CPF: "+contato1.getCpf());
-				System.out.println("+++++++++++++++++++++++++++++++++++++++++");
+				System.out.println(" ");
 			}
 
 			id.close();
@@ -119,7 +119,7 @@ public class Gerencia_Contato {
 			id.close();
 		}
 
-//		Atualiza um contato
+//		Atualiza um contato e lista ele para que seja visto melhor o campo que será alterado
 		if(funcao_escolhida == 6) {
 
 			System.out.println("Digite o id: ");
