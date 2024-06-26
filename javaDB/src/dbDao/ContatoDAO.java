@@ -39,6 +39,77 @@ public class ContatoDAO {
 		return contato;
 	}
 	
+	public List<Contato> getNome(String letra) throws SQLException {
+		String select = "select * from contatos where nome like '"+letra+"%'";
+		PreparedStatement smt = con.prepareStatement(select);
+		
+		smt.execute();
+		ResultSet rset = smt.executeQuery();
+		List<Contato> contato = new ArrayList<Contato>();
+		
+		while (rset.next()) {
+			Contato ct = new Contato();
+			ct.setNome(rset.getString("nome"));
+			ct.setEmail(rset.getString("email"));
+			ct.setEndereco(rset.getString("endereco"));
+			ct.setCpf(rset.getString("cpf"));
+			contato.add(ct);
+		}
+		
+		rset.close();
+		smt.close();
+		con.close();
+		
+		return contato;
+	}
+	
+	public List<Contato> getId(int id) throws SQLException {
+		String select = "select * from contatos where id = ?";
+		PreparedStatement smt = con.prepareStatement(select);
+		smt.setInt(1, id);
+		smt.execute();
+		ResultSet rset = smt.executeQuery();
+		List<Contato> contato = new ArrayList<Contato>();
+		
+		while (rset.next()) {
+			Contato ct = new Contato();
+			ct.setNome(rset.getString("nome"));
+			ct.setEmail(rset.getString("email"));
+			ct.setEndereco(rset.getString("endereco"));
+			ct.setCpf(rset.getString("cpf"));
+			contato.add(ct);
+		}
+		
+		rset.close();
+		smt.close();
+		con.close();
+		
+		return contato;
+	}
+	
+	public List<Contato> getIdentificador(int id) throws SQLException {
+		String select = "select * from contatos where id = ?";
+		PreparedStatement smt = con.prepareStatement(select);
+		smt.setInt(1, id);
+		smt.execute();
+		ResultSet rset = smt.executeQuery();
+		List<Contato> contato = new ArrayList<Contato>();
+		
+		while (rset.next()) {
+			Contato ct = new Contato();
+			ct.setNome(rset.getString("nome"));
+			ct.setEmail(rset.getString("email"));
+			ct.setEndereco(rset.getString("endereco"));
+			ct.setCpf(rset.getString("cpf"));
+			contato.add(ct);
+		}
+		
+		rset.close();
+		smt.close();
+		
+		return contato;
+	}
+	
 	public void adiciona(Contato contato) throws SQLException {
 		String sql = "insert into contatos(nome, email, endereco, cpf) values (?,?,?,?)";
 		PreparedStatement smt = con.prepareStatement(sql);
