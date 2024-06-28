@@ -19,6 +19,11 @@ public class ContatoDAO {
 		this.con = ConectionDB.getConnection();
 	}
 	
+	public void closeConnection() throws SQLException {
+	    if (con != null) {
+	        con.close();
+	    }
+	}
 	
 //	Método para listar os contatos
 	public List<Contato> select() throws SQLException {
@@ -38,7 +43,7 @@ public class ContatoDAO {
 		
 		rs.close();
 		smt.close();
-		con.close();
+		
 		
 		return contato;
 	}
@@ -63,7 +68,7 @@ public class ContatoDAO {
 		
 		rs.close();
 		smt.close();
-		con.close();
+		
 		
 		return contato;
 	}
@@ -89,7 +94,7 @@ public class ContatoDAO {
 		
 		rs.close();
 		smt.close();
-		con.close();
+		
 		
 		return contato;
 	}
@@ -129,7 +134,7 @@ public class ContatoDAO {
 		
 		smt.execute();
 		smt.close();
-		con.close();
+		
 	}
 	
 //	Método que deleta um contato
@@ -138,7 +143,7 @@ public class ContatoDAO {
 		PreparedStatement smt = con.prepareStatement(del);
 		
 		smt.execute();
-		con.close();
+		
 	}
 	
 	
@@ -152,7 +157,7 @@ public class ContatoDAO {
 				smt_name.setInt(2, id);
 				
 				smt_name.executeUpdate();
-				con.close();
+				
 			}
 			
 			if(coluna == 2) {
@@ -162,7 +167,7 @@ public class ContatoDAO {
 				smt_email.setInt(2, id);
 				
 				smt_email.executeUpdate();
-				con.close();
+				
 			}
 			
 			if(coluna == 3) {
@@ -172,7 +177,7 @@ public class ContatoDAO {
 				smt_endereco.setInt(2, id);
 				
 				smt_endereco.executeUpdate();
-				con.close();
+				
 			}
 			
 			if(coluna == 4) {
@@ -182,7 +187,7 @@ public class ContatoDAO {
 				smt_cpf.setInt(2, id);
 				
 				smt_cpf.executeUpdate();
-				con.close();
+				
 			}
 			
 	}
